@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
         crossorigin="anonymous">
+        <script src="https://use.fontawesome.com/f597411526.js"></script>
     <link rel="stylesheet" type="text/css" href="estilo.css">
 </head>
 
@@ -17,24 +18,78 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <h2>Variáveis de Entrada</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Variáveis de Entrada</h2>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Velocidade: <span id="velocidade"></span></label>
+                                    <input id="velocidadeRange" class="form-control" type="range" value="10" max="20" min="6" style="max-width: 200px">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label>Período de defeso (meses)</label>
+                                <select class="form-control">
+                                    <option value="1">1</option>
+                                    <option selected value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                        <label>Quantidade de barcos</label>
+                                        <input type="number" class="form-control" min="1" max="50" value="1">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                    <div class="form-group">
+                                            <label>Quantidade de barcos</label>
+                                            <input type="number" class="form-control" min="1" max="50" value="1">
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                                <button style="margin-right:5px" type="button" class="btn btn-success"><i class="fa fa-play" aria-hidden="true"></i> Iniciar</button>
+                                <button type="button" class="btn btn-danger"><i class="fa fa-stop" aria-hidden="true"></i> Parar</button>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
             <div class="col-sm-6">
-                <h2>Saída</h2>
-                <div class="row">
-                <div class="col-sm-4">
-                    <h5>População atual:</h5>
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Saída</h2>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h5>População atual:</h5>
+                            </div>
+                            <div class="col-sm-8">
+                                <h5>Tempo decorrido até a extinção:</h5>
+                            </div>
+                            <br>
+                            <br>
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-8">
-                    <h5>Tempo decorrido até a extinção:</h5>
-                </div>
-                </div>                
-                <h4>População em relação ao tempo</h4>
-                <canvas id="myChart"></canvas>
             </div>
         </div>
     </div>
-
+    <br>
 </body>
 
 <!--Bibliotecas -->
@@ -47,6 +102,7 @@
     crossorigin="anonymous"></script>
 
 <!--Nossos scripts -->
+<script src="site.js"></script>
 <script src="fishAnimation.js"></script>
 <script src="grafico.js"></script>
 

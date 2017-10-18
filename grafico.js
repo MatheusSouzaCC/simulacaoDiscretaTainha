@@ -20,6 +20,11 @@ var myChart = new Chart(ctx, {
                     beginAtZero:true
                 }
             }]
+        },
+        title: {
+            display: true,
+            text: 'População em relação ao tempo',
+            fontSize: 16
         }
     }
 });
