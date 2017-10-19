@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
         crossorigin="anonymous">
-        <script src="https://use.fontawesome.com/f597411526.js"></script>
+    <script src="https://use.fontawesome.com/f597411526.js"></script>
     <link rel="stylesheet" type="text/css" href="estilo.css">
 </head>
 
@@ -16,21 +16,22 @@
                 </div>
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="card-title">Variáveis de Entrada</h2>
+                        <h2 class="card-title"><i class="fa fa-cogs" aria-hidden="true"></i> Variáveis de Entrada</h2>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Velocidade: <span id="velocidade"></span></label>
-                                    <input id="velocidadeRange" class="form-control" type="range" value="10" max="20" min="6" style="max-width: 200px">
+                                    <input id="velocidadeRange" class="form-control" type="range" value="1" max="5" min="1" style="max-width: 200px">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <label>Período de defeso (meses)</label>
                                 <select class="form-control">
                                     <option value="1">1</option>
@@ -47,22 +48,30 @@
                                     <option value="12">12</option>
                                 </select>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <div class="form-group">
-                                        <label>Quantidade de barcos</label>
-                                        <input type="number" class="form-control" min="1" max="50" value="1">
+                                    <label>Quantidade de barcos</label>
+                                    <input type="number" class="form-control" min="1" max="50" value="1">
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                    <div class="form-group">
-                                            <label>Quantidade de barcos</label>
-                                            <input type="number" class="form-control" min="1" max="50" value="1">
-                                    </div>
+                                <div class="form-group">
+                                    <label>Quantidade de barcos</label>
+                                    <input type="number" class="form-control" min="1" max="50" value="1">
                                 </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label>Qtd. Máx. de pescados por barco (toneladas)</label>
+                                    <input type="number" class="form-control" min="1" max="50" value="1">
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
+                            <div class="col-sm-12">
                                 <button style="margin-right:5px" type="button" class="btn btn-success"><i class="fa fa-play" aria-hidden="true"></i> Iniciar</button>
                                 <button type="button" class="btn btn-danger"><i class="fa fa-stop" aria-hidden="true"></i> Parar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -72,13 +81,29 @@
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="card-title">Saída</h2>
+                        <h2 class="card-title"><i class="fa fa-line-chart" aria-hidden="true"></i> Saída</h2>
                         <div class="row">
-                            <div class="col-sm-4">
-                                <h5>População atual:</h5>
+                            <div class="col-sm-5">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">População atual:</h5>
+                                        <h2><i style="color:red" class="fa fa-heartbeat" aria-hidden="true"></i> <span id="populacao">0 tainhas</span></h2>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        Adultos: <span id="quantidadeAdultos">0</span> Filhotes: <span id="quantidadeFilhotes">0</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-8">
-                                <h5>Tempo decorrido até a extinção:</h5>
+                            <div class="col-sm-7">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Tempo decorrido até a extinção:</h5>
+                                        <h2><i class="fa fa-hourglass-end" aria-hidden="true"></i> <span id="tempo_decorrido">0 meses</span></h2>
+                                    </div>
+                                    <div class="card-footer">
+                                        <span id="statusPopulacao" style="color:green;font-weight:bold"><i class="fa fa-smile-o" aria-hidden="true"></i> Inextinta</span>
+                                    </div>
+                                </div>
                             </div>
                             <br>
                             <br>
