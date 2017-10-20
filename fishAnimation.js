@@ -1,4 +1,4 @@
-var STARTING_FISH_COUNT = 100;
+var STARTING_FISH_COUNT = 500;
 
 // globals
 var $count, $pond, pondWidth, pondHeight;
@@ -12,7 +12,6 @@ $(function() {
   
   // events
   $(window).on('resize', determinePondSize);
-  $pond.on('click', stirPond);
   
   // fill the pond
   spawnStartingFish();
@@ -29,6 +28,7 @@ function spawnStartingFish() {
   }
 }
 
+//metodo que adiciona o peixe ao clicar na tela, removido o evento que chama este metodo
 function stirPond(event) {
   spawnFish(event.clientX, event.clientY);
 }
@@ -42,7 +42,7 @@ function spawnFish(x, y) {
     $fish.addClass('fish-flip');
   }
   $fish.find('.fish-bob').css('animation-delay', '-' + getRandom(7) + 's');
-  $fish.find('.fish-body').on('click', pokeFish.bind(this, $fish));
+  //$fish.find('.fish-body').on('click', pokeFish.bind(this, $fish));
   positionFish($fish, x, y);
   
   // let fish go

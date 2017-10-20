@@ -41,9 +41,9 @@ h1 {
   position: absolute;
   margin: -15px 0 0 -30px;
   opacity: 0;
-  transition: transform 30s;
-  /* rapido 0.5 */
   /* padrao 10 */
+  /* rapido 0.2 */
+  transition: transform 30s;
   animation: spawn .5s forwards;
 }
 @keyframes spawn {
@@ -53,8 +53,9 @@ h1 {
 .fish-bob {
   position: relative;
   margin-top: -20px;
+  /* rapido : 0.2 */
+    /* padrao 6 */
   animation: bob 6s infinite; 
-  /* rapido : 2 */
 }
 @keyframes bob {
   50% { transform: translateY(40px); }

@@ -69,8 +69,12 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <button style="margin-right:5px" type="button" class="btn btn-success"><i class="fa fa-play" aria-hidden="true"></i> Iniciar</button>
-                                <button type="button" class="btn btn-danger"><i class="fa fa-stop" aria-hidden="true"></i> Parar</button>
+                                <button id="play" style="margin-right:5px" type="button" class="btn btn-success"><i class="fa fa-play" aria-hidden="true"></i> Iniciar</button>
+                                <button disabled id="stop" type="button" class="btn btn-danger"><i class="fa fa-stop" aria-hidden="true"></i> Parar</button>
+                            </div>                            
+                            <div class="col-sm-12">
+                                    <br>
+                                <span id="cog-parent" style="color:red;font-weight:bold"><i id="cog"  class="fa fa-cog fa-2x fa-fw"></i> Parado</span>                                
                             </div>
                         </div>
                     </div>
@@ -83,7 +87,7 @@
                     <div class="card-body">
                         <h2 class="card-title"><i class="fa fa-line-chart" aria-hidden="true"></i> Saída</h2>
                         <div class="row">
-                            <div class="col-sm-5">
+                            <div class="col-sm-6    ">
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">População atual:</h5>
@@ -94,10 +98,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-7">
+                            <div class="col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">Tempo decorrido até a extinção:</h5>
+                                        <h5 class="card-title">Tempo decorrido:</h5>
                                         <h2><i class="fa fa-hourglass-end" aria-hidden="true"></i> <span id="tempo_decorrido">0 meses</span></h2>
                                     </div>
                                     <div class="card-footer">
