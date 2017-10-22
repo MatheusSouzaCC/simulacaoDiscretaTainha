@@ -1,4 +1,4 @@
-var STARTING_FISH_COUNT = 500;
+var STARTING_FISH_COUNT = 0;
 
 // globals
 var $count, $pond, pondWidth, pondHeight;
@@ -22,8 +22,8 @@ function determinePondSize() {
   pondHeight = $pond.height();
 }  
 
-function spawnStartingFish() {
-  for (var i = 0; i < STARTING_FISH_COUNT; i++) {
+function spawnStartingFish(qtd) {
+  for (var i = 0; i < qtd; i++) {
     spawnFish(getRandom(pondWidth), getRandom(pondHeight));
   }
 }
