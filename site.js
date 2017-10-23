@@ -5,6 +5,7 @@ $(document).ready(function () {
     var populacaoAtual = 0;
     var timer;
     var tempoDecorrido = 0;
+    var iniciado = false;
 
     var rangeSlider = function () {
         var slider = $('.range-slider'),
@@ -34,6 +35,7 @@ $(document).ready(function () {
         $('#cog').addClass('fa-spin');
 
         iniciar();
+        iniciado = true;
     });
 
     $('#stop').click(function () {
@@ -44,6 +46,7 @@ $(document).ready(function () {
         $('#cog').removeClass('fa-spin');
 
         parar();
+        iniciado = false;
     });
 
     $('#velocidadeRange').change(function () {
@@ -56,28 +59,30 @@ $(document).ready(function () {
     });
 
     function atualizaVelocidadeAnimacao(velocidade) {
-        var peixes = $('.fish-bob');
-        switch (parseFloat(velocidade)) {
-            case 1:
-                updateSpeed(peixes, 6, 30);
-                startTimer(3000);
-                break;
-            case 2:
-                updateSpeed(peixes, 6, 10);
-                startTimer(1000);
-                break;
-            case 3:
-                updateSpeed(peixes, 2, 5);
-                startTimer(800);
-                break;
-            case 4:
-                updateSpeed(peixes, 1, 0.5);
-                startTimer(500);
-                break;
-            case 5:
-                updateSpeed(peixes, 0.2, 0.2);
-                startTimer(300);
-                break;
+        if(iniciado){
+            var peixes = $('.fish-bob');
+            switch (parseFloat(velocidade)) {
+                case 1:
+                    updateSpeed(peixes, 6, 30);
+                    startTimer(3000);
+                    break;
+                case 2:
+                    updateSpeed(peixes, 6, 10);
+                    startTimer(1000);
+                    break;
+                case 3:
+                    updateSpeed(peixes, 2, 5);
+                    startTimer(500);
+                    break;
+                case 4:
+                    updateSpeed(peixes, 1, 0.5);
+                    startTimer(300);
+                    break;
+                case 5:
+                    updateSpeed(peixes, 0.2, 0.2);
+                    startTimer(100);
+                    break;
+            }
         }
     }
 
