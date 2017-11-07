@@ -206,14 +206,23 @@ $(document).ready(function () {
             //se pesca filhotes
         } else {
             populacaoAtual -= qtdPescada;
+            if(populacaoAtual < 0){
+                populacaoAtual = 0;
+            }
             //remove os peixes do canvas
             for (var index = 0; index < qtdPescada; index++) {
                 //divide igualmente a quantidade pescada entre os filhotes e os adultos
                 if (i % 2 == 0) {
                     qtdAdultos -= qtdPescada;
+                    if(qtdAdultos < 0){
+                        qtdAdultos = 0;
+                    }
                     removerPeixes(1, 'adulto');
                 } else {
                     qtdFilhotes -= qtdPescada;
+                    if(qtdFilhotes < 0){
+                        qtdFilhotes = 0;
+                    }
                     removerPeixes(1, 'filhote');
                 }
             }
