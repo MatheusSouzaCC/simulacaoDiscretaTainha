@@ -104,10 +104,7 @@ h1 {
 .fish-1 .fish-body::before { border-left-color: #d49919; }
 .fish-2 .fish-body { background-color: #74a135; }
 .fish-2 .fish-body::before { border-left-color: #74a135; }
-.fish-3 .fish-body { background-color: #806fad; }
-.fish-3 .fish-body::before { border-left-color: #806fad; }
-.fish-4 .fish-body { background-color: #d97eb6; }
-.fish-4 .fish-body::before { border-left-color: #d97eb6; }
+
 
 .fish-flip .fish-direction { transform: scaleX(-1); }
 

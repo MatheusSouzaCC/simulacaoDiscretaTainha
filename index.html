@@ -21,7 +21,8 @@
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="card-title"><i class="fa fa-cogs" aria-hidden="true"></i> Variáveis de Entrada</h2>
+                        <h2 class="card-title">
+                            <i class="fa fa-cogs" aria-hidden="true"></i> Variáveis de Entrada</h2>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="range-slider">
@@ -35,21 +36,10 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <label>Período de defeso (meses)</label>
-                                <select class="form-control">
-                                    <option value="1">1</option>
-                                    <option selected value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
+                                <div class="form-group">
+                                    <label>Quantidade de barcos</label>
+                                    <input type="number" class="form-control" min="1" max="50" value="1">
+                                </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -57,65 +47,104 @@
                                     <input id="peixesIniciais" type="number" class="form-control" min="1" max="50" value="1">
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label>Quantidade de barcos</label>
-                                    <input type="number" class="form-control" min="1" max="50" value="1">
-                                </div>
-                            </div>
-                            <div class="col-sm-8">
-                                <div class="form-group">
-                                    <label>Qtd. Máx. de pescados por barco (toneladas)</label>
-                                    <input type="number" class="form-control" min="1" max="50" value="1">
-                                </div>
-                            </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-12">
-                                <label>Permitir pesca de filhotes ?</label>                            
+                            <div class="col-sm-6">
+                                <label>Período de defeso Inicial</label>
+                                <select class="form-control">
+                                    <option value="1">Janeiro</option>
+                                    <option value="2">Fevereiro</option>
+                                    <option value="3">Março</option>
+                                    <option selected value="4">Abril</option>
+                                    <option value="5">Maio</option>
+                                    <option value="6">Junho</option>
+                                    <option value="7">Julho</option>
+                                    <option value="8">Agosto</option>
+                                    <option value="9">Setembro</option>
+                                    <option value="10">Outubro</option>
+                                    <option value="11">Novembro</option>
+                                    <option value="12">Dezembro</option>
+                                </select>
                             </div>
-                            <div class="col-sm-12">
-                                <div class="form-check form-check-inline">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="filhotesSim" value="1"> Sim
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="filhotesNao" value="2"> Não
-                                    </label>
-                                </div>
+                            <div class="col-sm-6">
+                                <label>Período de defeso Final</label>
+                                <select class="form-control">
+                                    <option value="1">Janeiro</option>
+                                    <option value="2">Fevereiro</option>
+                                    <option value="3">Março</option>
+                                    <option value="4">Abril</option>
+                                    <option value="5">Maio</option>
+                                    <option value="6">Junho</option>
+                                    <option selected value="7">Julho</option>
+                                    <option value="8">Agosto</option>
+                                    <option value="9">Setembro</option>
+                                    <option value="10">Outubro</option>
+                                    <option value="11">Novembro</option>
+                                    <option value="12">Dezembro</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <button id="play" style="margin-right:5px" type="button" class="btn btn-success"><i class="fa fa-play" aria-hidden="true"></i> Iniciar</button>
-                                <button disabled id="stop" type="button" class="btn btn-danger"><i class="fa fa-stop" aria-hidden="true"></i> Parar</button>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <br>
+                            <label>Permitir pesca de filhotes ?</label>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="filhotesSim" value="1"> Sim
+                                </label>
                             </div>
-                            <div class="col-sm-12">
-                                <br>
-                                <span id="cog-parent" style="color:red;font-weight:bold"><i id="cog"  class="fa fa-cog fa-2x fa-fw"></i> Parado</span>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="filhotesNao" value="2"> Não
+                                </label>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button id="play" style="margin-right:5px" type="button" class="btn btn-success">
+                                <i class="fa fa-play" aria-hidden="true"></i> Iniciar</button>
+                            <button disabled id="stop" type="button" class="btn btn-danger">
+                                <i class="fa fa-stop" aria-hidden="true"></i> Parar</button>
+                        </div>
+                        <div class="col-sm-12">
+                            <br>
+                            <span id="cog-parent" style="color:red;font-weight:bold">
+                                <i id="cog" class="fa fa-cog fa-2x fa-fw"></i> Parado</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="div col sm-12">
+                            <br>
+                            <p>
+                                <b>Obs:</b> as tainhas se reproduzem de abril à julho
+                            </p>
+                        </div>
+                    </div>
                 </div>
-
-
+            </div>
             </div>
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="card-title"><i class="fa fa-line-chart" aria-hidden="true"></i> Saída</h2>
+                        <h2 class="card-title">
+                            <i class="fa fa-line-chart" aria-hidden="true"></i> Saída</h2>
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">População atual:</h5>
-                                        <h2><i style="color:red" class="fa fa-heartbeat" aria-hidden="true"></i> <span id="populacao">0 tainhas</span></h2>
+                                        <h2>
+                                            <i style="color:red" class="fa fa-heartbeat" aria-hidden="true"></i>
+                                            <span id="populacao">0</span> milhões</h2>
                                     </div>
                                     <div class="card-footer text-muted">
-                                        Adultos: <span id="quantidadeAdultos">0</span> Filhotes: <span id="quantidadeFilhotes">0</span>
+                                        Adultos:
+                                        <span id="quantidadeAdultos">0</span> Filhotes:
+                                        <span id="quantidadeFilhotes">0</span>
                                     </div>
                                 </div>
                             </div>
@@ -123,10 +152,16 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">Tempo decorrido:</h5>
-                                        <h2><i class="fa fa-hourglass-end" aria-hidden="true"></i> <span id="tempoDecorrido">0</span> meses</h2>
+                                        <h2>
+                                            <i class="fa fa-hourglass-end" aria-hidden="true"></i>
+                                            <span id="tempoDecorrido">0</span> meses</h2>
                                     </div>
                                     <div class="card-footer text-muted">
-                                        <span>Procriação em: <b>0</b> meses</span>
+                                        <span>Mes Atual:
+                                            <b>
+                                                <span id="mesAtual"></span>
+                                            </b>
+                                        </span>
                                     </div>
                                 </div>
                             </div>

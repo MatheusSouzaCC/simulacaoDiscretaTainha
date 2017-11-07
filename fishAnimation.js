@@ -24,7 +24,19 @@ function determinePondSize() {
 
 function spawnStartingFish(qtd) {
   for (var i = 0; i < qtd; i++) {
-    spawnFish(getRandom(pondWidth), getRandom(pondHeight));
+    spawnFish(getRandom(pondWidth), getRandom(pondHeight),1);
+  }
+}
+
+function spawnMany(qtd,tipo) {
+  var cor = 2;
+  if(tipo.toLowerCase() == 'filhote'){
+    cor = 2;
+  }else if(tipo.toLowerCase() == 'adulto'){
+    cor = 1;
+  }
+  for (var i = 0; i < qtd; i++) {
+    spawnFish(getRandom(pondWidth), getRandom(pondHeight),cor);
   }
 }
 
@@ -33,11 +45,11 @@ function stirPond(event) {
   spawnFish(event.clientX, event.clientY);
 }
 
-function spawnFish(x, y) {
+function spawnFish(x, y,cor) {
   // setup fish
   var $fish = $('<div class="fish"><div class="fish-bob"><div class="fish-direction"><div class="fish-body"></div></div></div></div>');
-  var colors = [1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 4];
-  $fish.addClass('fish-' + colors[Math.floor(getRandom(15))]);
+
+  $fish.addClass('fish-' + cor);
   if (getRandom(2) < 1) {
     $fish.addClass('fish-flip');
   }

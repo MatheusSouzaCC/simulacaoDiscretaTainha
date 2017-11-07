@@ -58,9 +58,8 @@ function removeData(chart) {
 }
 
 
-function atualizaGrafico(mes, qtd) {
-    console.log(mes);
 
+function atualizaGrafico(mes, qtd) {
     var date = new Date(mes + "/01/0000");
     var locale = "pt-br";
     month = date.toLocaleString(locale, { month: "short" });

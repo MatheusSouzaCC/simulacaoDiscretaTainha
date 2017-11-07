@@ -6,6 +6,11 @@ $(document).ready(function () {
     var timer;
     var tempoDecorrido = 0;
     var iniciado = false;
+    //var tainhas = [];
+    var qtdAdultos = 0;
+    var qtdFilhotes = 0;
+    var qtdDesenhada = 0;
+    //adulto 42 meses
 
     var rangeSlider = function () {
         var slider = $('.range-slider'),
@@ -59,7 +64,7 @@ $(document).ready(function () {
     });
 
     function atualizaVelocidadeAnimacao(velocidade) {
-        if(iniciado){
+        if (iniciado) {
             var peixes = $('.fish-bob');
             switch (parseFloat(velocidade)) {
                 case 1:
@@ -95,12 +100,22 @@ $(document).ready(function () {
         }
     }
 
+    function retornarNomeMes(mes) {
+        var date = new Date(mes + "/01/0000");
+        var locale = "pt-br";
+        return date.toLocaleString(locale, { month: "long" });
+    }
+
     function atualizaMesAtual() {
+        //atualiza o proximo mes
         if (mesAtual < 12) {
             mesAtual++;
         } else {
             mesAtual = 1;
         }
+
+        $('#mesAtual').html(retornarNomeMes(mesAtual));
+
         atualizaTempoDecorrido();
     }
 
@@ -109,11 +124,20 @@ $(document).ready(function () {
     }
 
     function iniciar() {
+        //remove os peixes do canvas
+        $('.fish').remove();
+        //reseta o grafico
         destruirGrafico();
         iniciarGrafico();
-
+        //reseta contadores
+        qtdFilhotes = 0;
+        $('#quantidadeFilhotes').html(0);
         $("#tempoDecorrido").html(tempoDecorrido = 0);
         populacaoAtual = parseFloat($("#peixesIniciais").val());
+        //iniciam todos adultos
+        qtdAdultos = populacaoAtual;
+        $('#populacao').html(populacaoAtual);
+        $('#mesAtual').html(retornarNomeMes(mesAtual));
 
         $("#peixesIniciais").prop('disabled', true);
 
@@ -121,14 +145,18 @@ $(document).ready(function () {
         $('#velocidadeRange').val('1');
         $('.range-slider__value').html('1');
         startTimer(3000);
+        if (populacaoAtual < 500) {
+            spawnStartingFish(populacaoAtual);
+        } else {
+            spawnStartingFish(500);
+        }
 
-        spawnStartingFish(populacaoAtual);
     }
 
     function parar() {
-        clearInterval(timer);
-        //remover os peixes
-        mesAtual = 1;
+        clearInterval(timer);        
+        //reseta os contadores necessários
+        mesAtual = 1;        
         $("#peixesIniciais").prop('disabled', false);
     }
 
@@ -136,8 +164,73 @@ $(document).ready(function () {
         clearInterval(timer);
         timer = setInterval(function () {
             atualizaGrafico(mesAtual, populacaoAtual);
+
+            var sobreviventes = reproduzir(mesAtual, qtdAdultos);
+
+            if (qtdDesenhada + sobreviventes <= 500) {
+                desenharPeixes(sobreviventes, 'filhote');
+            }
+            atualizaContadoresPopulacao();
             atualizaMesAtual();
         }, mili);
+    }
+
+    function reproduzir(mes, adultos) {
+        var sobreviventes = 0;
+        //somente se tiver adultos
+        if (adultos > 0) {
+            //reproduz entre abril e julho      
+            if (mes >= 4 && mes <= 7) {
+                console.log(mes);
+                sobreviventes = 40;// formula
+                populacaoAtual += sobreviventes / 4;
+                qtdFilhotes += sobreviventes / 4;
+            }
+            //remover isso, somente para testes
+            if(mes ==   12){
+                pescar(0,0,false);
+            }
+        }
+        return sobreviventes;
+    }
+
+    function pescar(qtdBarcos, qtdMaxPescadosPorBarco, pescaFilhotes) {
+
+        var qtdPescada = 10; // formula
+        //se nao pesca filhotes
+        if (!pescaFilhotes) {
+            qtdAdultos -= qtdPescada;
+            populacaoAtual -= qtdPescada;
+            //remove os peixes do canvas
+            for (var index = 0; index < qtdPescada; index++) {
+                //remove o primeiro peixe da colecao
+                $('.fish')[0].remove();
+            }
+            //se pesca filhotes
+        } else {
+            populacaoAtual -= qtdPescada;
+            //remove os peixes do canvas
+            for (var index = 0; index < qtdPescada; index++) {
+                //remove o primeiro peixe da colecao
+                $('.fish')[0].remove();
+                //divide igualmente a quantidade pescada entre os filhotes e os adultos
+                if (i % 2 == 0) {
+                    qtdAdultos -= qtdPescada;
+                } else {
+                    qtdFilhotes -= qtdPescada;
+                }
+            }
+        }
+    }
+
+    function desenharPeixes(qtd, tipo) {
+        spawnMany(qtd, tipo);
+    }
+
+    function atualizaContadoresPopulacao() {
+        $('#populacao').html(populacaoAtual);
+        $('#quantidadeFilhotes').html(qtdFilhotes);
+        $('#quantidadeAdultos').html(qtdAdultos);
     }
 });
 
