@@ -38,7 +38,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Quantidade de barcos</label>
-                                    <input type="number" class="form-control" min="1" max="50" value="1">
+                                    <input id="qtdBarcos" type="number" class="form-control" min="1" max="50" value="1">
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -85,48 +85,56 @@
                                 </select>
                             </div>
                         </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <br>
-                            <label>Permitir pesca de filhotes ?</label>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="filhotesSim" value="1"> Sim
-                                </label>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <br>
+                                <label>Permitir pesca de filhotes ?</label>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="filhotesNao" value="2" checked> Não
-                                </label>
+                            <div class="col-sm-12">
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="filhotesSim" value="1"> Sim
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="filhotesNao" value="2" checked> Não
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <button id="play" style="margin-right:5px" type="button" class="btn btn-success">
-                                <i class="fa fa-play" aria-hidden="true"></i> Iniciar</button>
-                            <button disabled id="stop" type="button" class="btn btn-danger">
-                                <i class="fa fa-stop" aria-hidden="true"></i> Parar</button>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button id="play" style="margin-right:5px" type="button" class="btn btn-success">
+                                    <i class="fa fa-play" aria-hidden="true"></i> Iniciar</button>
+                                <button disabled id="stop" type="button" class="btn btn-danger">
+                                    <i class="fa fa-stop" aria-hidden="true"></i> Parar</button>
+                            </div>
+                            <div class="col-sm-12">
+                                <br>
+                                <span id="cog-parent" style="color:red;font-weight:bold">
+                                    <i id="cog" class="fa fa-cog fa-2x fa-fw"></i> Parado</span>
+                            </div>
                         </div>
-                        <div class="col-sm-12">
-                            <br>
-                            <span id="cog-parent" style="color:red;font-weight:bold">
-                                <i id="cog" class="fa fa-cog fa-2x fa-fw"></i> Parado</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="div col sm-12">
-                            <br>
-                            <p>
-                                <b>Obs:</b> as tainhas se reproduzem de abril à julho
-                                <p><b>Legenda:</b> <i style="color:#d49919;" class="fa fa-square"></i> adulto, <i style="color:#74a135;" class="fa fa-square"></i> filhote.</p>
-                            </p>
+                        <div class="row">
+                            <div class="div col sm-12">
+                                <br>
+                                <p>
+                                    <b>Obs:</b> as tainhas se reproduzem de abril à julho
+                                </p>
+                                <p>
+                                    <b>Escala: </b> 1 peixe desenhado para cada 1 milhão
+                                </p>
+                                <p>
+                                    <b>Legenda:</b>
+                                    <i style="color:#d49919;" class="fa fa-square"></i> adulto,
+                                    <i style="color:#74a135;" class="fa fa-square"></i> filhote.
+                                </p>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
             <div class="col-sm-6">
                 <div class="card">
@@ -134,7 +142,7 @@
                         <h2 class="card-title">
                             <i class="fa fa-line-chart" aria-hidden="true"></i> Saída</h2>
                         <div class="row">
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-sm-12 col-md-7">
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">População atual:</h5>
@@ -149,7 +157,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-sm-12 col-md-5">
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">Tempo decorrido:</h5>
