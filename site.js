@@ -170,9 +170,6 @@ $(document).ready(function () {
 
             var sobreviventes = reproduzir(mesAtual, populacaoAdultos);
 
-            if (qtdDesenhada + sobreviventes <= 500) {
-                desenharPeixes(sobreviventes, 'filhote');
-            }
 
             envelhecerPeixes(gruposFilhotes);
             desenharPeixes(sobreviventes, 'filhote');
