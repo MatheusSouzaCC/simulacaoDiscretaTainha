@@ -127,7 +127,7 @@ $(document).ready(function () {
 
     function iniciar() {
         //remove os peixes do canvas
-        removerPeixes();        
+        removerPeixes();
         //reseta o grafico
         destruirGrafico();
         iniciarGrafico();
@@ -176,7 +176,7 @@ $(document).ready(function () {
 
             envelhecerPeixes(gruposFilhotes);
             desenharPeixes(sobreviventes, 'filhote');
-            
+
             atualizaContadoresPopulacao();
             atualizaMesAtual();
         }, mili);
@@ -203,7 +203,6 @@ $(document).ready(function () {
     }
 
     function envelhecerPeixes(gruposDePeixes) {
-        console.log(gruposDePeixes);
         if (gruposDePeixes.length > 0) {
             for (var index = 0; index < gruposDePeixes.length; index++) {
                 var grupo = gruposDePeixes[index];
@@ -217,6 +216,9 @@ $(document).ready(function () {
                     populacaoAtual += novosAdultos;
                     //remove dos grupos de peixes
                     gruposDePeixes.splice(index, 1);
+                    //remove e desenha os elementos html
+                    removerPeixes(novosAdultos, 'filhote');
+                    desenharPeixes(novosAdultos, 'adulto');
                 } else {
                     grupo.idade++;
                 }
@@ -251,10 +253,10 @@ $(document).ready(function () {
     }
 
     function desenharPeixes(qtd, tipo) {
-        if(qtdDesenhada + qtd <= 500){
+        if (qtdDesenhada + qtd <= 500) {
             spawnMany(qtd, tipo);
             qtdDesenhada += qtd;
-        }      
+        }
     }
 
     //remove do canvas a quantidade e do tipo passados por parametro
@@ -264,7 +266,7 @@ $(document).ready(function () {
         //ambos
         if (!tipo) {
             if (qtd) {
-                for (var i = 0; i < qtd; i++) {                    
+                for (var i = 0; i < qtd; i++) {
                     $('.fish')[0].remove();
                 }
             }
