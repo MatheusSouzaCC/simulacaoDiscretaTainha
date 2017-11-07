@@ -205,16 +205,7 @@ $(document).ready(function () {
                     //atualiza população de adultos                    
                     atualizaPopulacao(novosAdultos,'adultos','+');
                     //atualiza população de filhotes
-<<<<<<< HEAD
                     atualizaPopulacao(novosAdultos,'filhotes','-');                    
-=======
-                    populacaoFilhotes -= novosAdultos;
-                    if (populacaoFilhotes < 0) {
-                        populacaoFilhotes = 0;
-                    }
-                    //atualiza população atual
-                    populacaoAtual += novosAdultos;
->>>>>>> c2d8fb57a3b699c5631ac337fb47a5263d3be495
                     //remove dos grupos de peixes
                     gruposDePeixes.splice(index, 1);
                     //remove e desenha os elementos html
@@ -228,7 +219,6 @@ $(document).ready(function () {
     }
 
     function pescar(qtdBarcos, qtdMaxPescadosPorBarco, pescaFilhotes) {
-<<<<<<< HEAD
 
         var qtdPescada = 10; // formula
         //evita numeros negativos
@@ -251,47 +241,6 @@ $(document).ready(function () {
                 } else {
                     atualizaPopulacao(1,'filhotes','-');
                     removerPeixes(1, 'filhote');
-=======
-        if ((mesAtual < periodoDefesoIni) || (mesAtual > periodoDefesoFin)) {
-            var qtdPescada = 10; // formula
-            //evita numeros negativos
-            if (populacaoAtual - qtdPescada < 0) {
-                qtdPescada = populacaoAtual;
-            }
-            //se nao pesca filhotes
-            if (!pescaFilhotes) {
-                populacaoAdultos -= qtdPescada;
-                if (populacaoAdultos < 0) {
-                    populacaoAdultos = 0;
-                }
-                populacaoAtual -= qtdPescada;
-                if (populacaoAtual < 0) {
-                    populacaoAtual = 0;
-                }
-                //remove os peixes do canvas
-                removerPeixes(qtdPescada, 'adulto');
-                //se pesca filhotes
-            } else {
-                populacaoAtual -= qtdPescada;
-                if (populacaoAtual < 0) {
-                    populacaoAtual = 0;
-                }
-                //remove os peixes do canvas
-                for (var index = 0; index < qtdPescada; index++) {
-                    //divide igualmente a quantidade pescada entre os filhotes e os adultos
-                    if (index % 2 == 0) {
-                        populacaoAdultos -= qtdPescada;
-                        if (populacaoAdultos < 0) {
-                            populacaoAdultos = 0;
-                        }
-                        removerPeixes(1, 'adulto');
-                    } else {
-                        populacaoFilhotes -= qtdPescada;
-                        if (populacaoFilhotes < 0) {
-                            populacaoFilhotes = 0;
-                        }
-                    }
->>>>>>> c2d8fb57a3b699c5631ac337fb47a5263d3be495
                 }
             }
         }
