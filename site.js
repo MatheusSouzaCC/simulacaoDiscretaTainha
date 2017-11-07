@@ -127,7 +127,7 @@ $(document).ready(function () {
 
     function iniciar() {
         //remove os peixes do canvas
-        $('.fish').remove();
+        removerPeixes();        
         //reseta o grafico
         destruirGrafico();
         iniciarGrafico();
@@ -138,6 +138,7 @@ $(document).ready(function () {
         populacaoAtual = parseFloat($("#peixesIniciais").val());
         //iniciam todos adultos
         populacaoAdultos = populacaoAtual;
+        qtdDesenhada = populacaoAtual;
         $('#populacao').html(populacaoAtual);
         $('#mesAtual').html(retornarNomeMes(mesAtual));
 
@@ -174,6 +175,8 @@ $(document).ready(function () {
             }
 
             envelhecerPeixes(gruposFilhotes);
+            desenharPeixes(sobreviventes, 'filhote');
+            
             atualizaContadoresPopulacao();
             atualizaMesAtual();
         }, mili);
@@ -229,29 +232,66 @@ $(document).ready(function () {
             populacaoAdultos -= qtdPescada;
             populacaoAtual -= qtdPescada;
             //remove os peixes do canvas
-            for (var index = 0; index < qtdPescada; index++) {
-                //remove o primeiro peixe da colecao
-                $('.fish')[0].remove();
-            }
+            removerPeixes(qtdPescada, 'adulto');
             //se pesca filhotes
         } else {
             populacaoAtual -= qtdPescada;
             //remove os peixes do canvas
             for (var index = 0; index < qtdPescada; index++) {
-                //remove o primeiro peixe da colecao
-                $('.fish')[0].remove();
                 //divide igualmente a quantidade pescada entre os filhotes e os adultos
                 if (i % 2 == 0) {
-                    populacaoAdultos -= qtdPescada;
+                    qtdAdultos -= qtdPescada;
+                    removerPeixes(1, 'adulto');
                 } else {
-                    populacaoFilhotes -= qtdPescada;
+                    qtdFilhotes -= qtdPescada;
+                    removerPeixes(1, 'filhote');
                 }
             }
         }
     }
 
     function desenharPeixes(qtd, tipo) {
-        spawnMany(qtd, tipo);
+        if(qtdDesenhada + qtd <= 500){
+            spawnMany(qtd, tipo);
+            qtdDesenhada += qtd;
+        }      
+    }
+
+    //remove do canvas a quantidade e do tipo passados por parametro
+    //os dois parametros sao opcionais
+    //se nada for passado, remove todos os peixes
+    function removerPeixes(qtd, tipo) {
+        //ambos
+        if (!tipo) {
+            if (qtd) {
+                for (var i = 0; i < qtd; i++) {                    
+                    $('.fish')[0].remove();
+                }
+            }
+            else {
+                $('.fish').remove();
+            }
+            //filhotes
+        } else if (tipo.toLowerCase() == 'filhote') {
+            if (qtd) {
+                for (var i = 0; i < qtd; i++) {
+                    $('.fish.fish-2')[0].remove();
+                }
+            } else {
+                $('.fish.fish-2').remove();
+            }
+            //adultos
+        } else if (tipo.toLowerCase() == 'adulto') {
+            if (qtd) {
+                for (var i = 0; i < qtd; i++) {
+                    $('.fish.fish-1')[0].remove();
+                }
+            }
+            else {
+                $('.fish.fish-1').remove();
+            }
+        }
+        qtdDesenhada -= qtd;
     }
 
     function atualizaContadoresPopulacao() {
