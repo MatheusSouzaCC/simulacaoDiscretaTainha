@@ -1,15 +1,17 @@
 
 $(document).ready(function () {
+    const mesesParaVirarAdulto = 42;
     var wto;
     var mesAtual = 1;
     var populacaoAtual = 0;
+    var populacaoAdultos = 0;
+    var populacaoFilhotes = 0;
     var timer;
     var tempoDecorrido = 0;
     var iniciado = false;
     //var tainhas = [];
-    var qtdAdultos = 0;
-    var qtdFilhotes = 0;
     var qtdDesenhada = 0;
+    var gruposFilhotes = [];
     //adulto 42 meses
 
     var rangeSlider = function () {
@@ -130,12 +132,12 @@ $(document).ready(function () {
         destruirGrafico();
         iniciarGrafico();
         //reseta contadores
-        qtdFilhotes = 0;
+        populacaoFilhotes = 0;
         $('#quantidadeFilhotes').html(0);
         $("#tempoDecorrido").html(tempoDecorrido = 0);
         populacaoAtual = parseFloat($("#peixesIniciais").val());
         //iniciam todos adultos
-        qtdAdultos = populacaoAtual;
+        populacaoAdultos = populacaoAtual;
         qtdDesenhada = populacaoAtual;
         $('#populacao').html(populacaoAtual);
         $('#mesAtual').html(retornarNomeMes(mesAtual));
@@ -166,8 +168,13 @@ $(document).ready(function () {
         timer = setInterval(function () {
             atualizaGrafico(mesAtual, populacaoAtual);
 
-            var sobreviventes = reproduzir(mesAtual, qtdAdultos);
+            var sobreviventes = reproduzir(mesAtual, populacaoAdultos);
 
+            if (qtdDesenhada + sobreviventes <= 500) {
+                desenharPeixes(sobreviventes, 'filhote');
+            }
+
+            envelhecerPeixes(gruposFilhotes);
             desenharPeixes(sobreviventes, 'filhote');
             
             atualizaContadoresPopulacao();
@@ -182,9 +189,10 @@ $(document).ready(function () {
             //reproduz entre abril e julho      
             if (mes >= 4 && mes <= 7) {
                 console.log(mes);
-                sobreviventes = 40;// formula
-                populacaoAtual += sobreviventes / 4;
-                qtdFilhotes += sobreviventes / 4;
+                sobreviventes = 40 / 4;// formula
+                populacaoAtual += sobreviventes;
+                populacaoFilhotes += sobreviventes;
+                gruposFilhotes.push({ qtd: sobreviventes, idade: 0 });
             }
             //remover isso, somente para testes
             if (mes == 12) {
@@ -194,12 +202,34 @@ $(document).ready(function () {
         return sobreviventes;
     }
 
+    function envelhecerPeixes(gruposDePeixes) {
+        console.log(gruposDePeixes);
+        if (gruposDePeixes.length > 0) {
+            for (var index = 0; index < gruposDePeixes.length; index++) {
+                var grupo = gruposDePeixes[index];
+                if (grupo.idade == mesesParaVirarAdulto) {
+                    let novosAdultos = grupo.qtd;
+                    //atualiza população de adultos
+                    populacaoAdultos += novosAdultos;
+                    //atualiza população de filhotes
+                    populacaoFilhotes -= novosAdultos;
+                    //atualiza população atual
+                    populacaoAtual += novosAdultos;
+                    //remove dos grupos de peixes
+                    gruposDePeixes.splice(index, 1);
+                } else {
+                    grupo.idade++;
+                }
+            }
+        }
+    }
+
     function pescar(qtdBarcos, qtdMaxPescadosPorBarco, pescaFilhotes) {
 
         var qtdPescada = 10; // formula
         //se nao pesca filhotes
         if (!pescaFilhotes) {
-            qtdAdultos -= qtdPescada;
+            populacaoAdultos -= qtdPescada;
             populacaoAtual -= qtdPescada;
             //remove os peixes do canvas
             removerPeixes(qtdPescada, 'adulto');
@@ -275,8 +305,8 @@ $(document).ready(function () {
 
     function atualizaContadoresPopulacao() {
         $('#populacao').html(populacaoAtual);
-        $('#quantidadeFilhotes').html(qtdFilhotes);
-        $('#quantidadeAdultos').html(qtdAdultos);
+        $('#quantidadeFilhotes').html(populacaoFilhotes);
+        $('#quantidadeAdultos').html(populacaoAdultos);
     }
 });
 
